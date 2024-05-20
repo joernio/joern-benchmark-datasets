@@ -17,8 +17,8 @@ object AvailableBenchmarks extends Enumeration {
 }
 
 object JavaCpgTypes extends Enumeration {
-  val JAVA_SRC = Value
-  val JAVA_BYTECODE     = Value
+  val JAVA_SRC      = Value
+  val JAVA_BYTECODE = Value
 }
 
 object OutputFormat extends Enumeration {
