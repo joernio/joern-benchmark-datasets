@@ -4,9 +4,12 @@ import io.joern.benchmarks.datasets.BenchmarkDataset.benchmarkConstructors
 import io.joern.benchmarks.datasets.AvailableBenchmarks
 import io.joern.benchmarks.datasets.runner.{
   DatasetDownloader,
-  IchnaeaDownloader,
-  OWASPJavaDownloader,
-  SecuribenchMicroDownloader
+  IchnaeaDownloader
+
+// TODO: Add when implementing
+
+//  OWASPJavaDownloader,
+//  SecuribenchMicroDownloader
 }
 import org.slf4j.LoggerFactory
 import upickle.default.*
