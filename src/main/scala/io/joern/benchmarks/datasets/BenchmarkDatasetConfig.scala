@@ -4,7 +4,7 @@ import better.files.File
 
 case class BenchmarkDatasetConfig(
   benchmark: AvailableBenchmarks.Value = AvailableBenchmarks.ALL,
-  datasetDir: File = File("workspace"),
+  datasetDir: File = File("workspace")
 )
 
 object AvailableBenchmarks extends Enumeration {
@@ -18,7 +18,7 @@ object AvailableBenchmarks extends Enumeration {
 
 object JavaCpgTypes extends Enumeration {
   val JAVA_SRC = Value
-  val JAVA     = Value
+  val JAVA_BYTECODE     = Value
 }
 
 object OutputFormat extends Enumeration {

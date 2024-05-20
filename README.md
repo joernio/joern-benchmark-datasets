@@ -16,9 +16,7 @@ A benchmarking suite for Joern
   --version                Prints the version
   benchmark                The benchmark to run. Available [ALL,OWASP_JAVASRC,OWASP_JAVA,SECURIBENCH_MICRO_JAVASRC,SECURIBENCH_MICRO_JAVA]
   -d, --dataset-dir <value>
-                           The dataset directory where benchmarks will be initialized and executed. Default is `./workspace`.
-  -o, --output <value>     The output directory to write results to. Default is `./results`.
-  -f, --format <value>     The output format to write results as. Default is JSON. Available [JSON,CSV,MD]
+                           The dataset directory where benchmarks will be downloaded to. Default is `./workspace`.
 ```
 
 ## Benchmarks

@@ -2,7 +2,12 @@ package io.joern.benchmarks.datasets
 
 import io.joern.benchmarks.datasets.BenchmarkDataset.benchmarkConstructors
 import io.joern.benchmarks.datasets.AvailableBenchmarks
-import io.joern.benchmarks.datasets.runner.{DatasetDownloader, IchnaeaDownloader, OWASPJavaDownloader, SecuribenchMicroDownloader}
+import io.joern.benchmarks.datasets.runner.{
+  DatasetDownloader,
+  IchnaeaDownloader,
+  OWASPJavaDownloader,
+  SecuribenchMicroDownloader
+}
 import org.slf4j.LoggerFactory
 import upickle.default.*
 
@@ -38,7 +43,7 @@ object BenchmarkDataset {
       AvailableBenchmarks.SECURIBENCH_MICRO_JAVASRC,
       x => new SecuribenchMicroDownloader(x.datasetDir, JavaCpgTypes.JAVA_SRC)
     ),
-    (AvailableBenchmarks.SECURIBENCH_MICRO_JAVA, x => new SecuribenchMicroDownloader(x.datasetDir, JavaCpgTypes.JAVA)),
+    (AvailableBenchmarks.SECURIBENCH_MICRO_JAVA, x => new SecuribenchMicroDownloader(x.datasetDir, JavaCpgTypes.JAVA_BYTECODE)),
     (AvailableBenchmarks.ICHNAEA_JSSRC, x => new IchnaeaDownloader(x.datasetDir))
   )
 
