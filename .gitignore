@@ -1,0 +1,9 @@
+cpg.bin
+target/
+.idea/
+/.bsp
+/joern-inst
+/workspace
+/results
+/bin
+.local
