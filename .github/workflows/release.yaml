@@ -41,7 +41,7 @@ jobs:
         run: ./joern-benchmarks-datasets
       - name: Rename
         run: |
-          mv workspace/ichanae_jssrc.zip ichanae_jssrc.zip
+          mv workspace/ichanae.zip ichanae_jssrc.zip
       - name: Set next release version
         id: taggerFinal
         uses: anothrNick/github-tag-action@1.61.0
