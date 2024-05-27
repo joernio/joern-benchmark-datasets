@@ -1,10 +1,10 @@
 name: release
-on:
-  push:
-    branches: [master, main]
-    tags: ["*"]
-    paths-ignore: ['**.md']
-  workflow_dispatch: #allows manual trigger
+on: pull_request
+  # push:
+  #   branches: [master, main]
+  #   tags: ["*"]
+  #   paths-ignore: ['**.md']
+  # workflow_dispatch: #allows manual trigger
 
 concurrency: production
 
