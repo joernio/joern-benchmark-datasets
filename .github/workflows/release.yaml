@@ -38,10 +38,10 @@ jobs:
       - name: Compile
         run: sbt clean stage
       - name: Generate Ruby Types
-        run: ./joern-benchmarks-datasets
+        run: ./joern-benchmarks-datasets ALL
       - name: Rename
         run: |
-          mv workspace/ichanae.zip ichanae_jssrc.zip
+          mv workspace/ichnaea.zip ichnaea.zip
       - name: Set next release version
         id: taggerFinal
         uses: anothrNick/github-tag-action@1.61.0
@@ -53,4 +53,4 @@ jobs:
         with:
           tag_name: ${{ steps.taggerDryRun.outputs.new_tag }}
           files: |
-            ichanae_jssrc.zip
+            ichnaea.zip
