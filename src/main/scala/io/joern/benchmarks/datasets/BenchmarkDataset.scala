@@ -6,7 +6,8 @@ import io.joern.benchmarks.datasets.runner.{
   DatasetDownloader,
   IchnaeaDownloader,
   OWASPJavaDownloader,
-  SecuribenchMicroDownloader
+  SecuribenchMicroDownloader,
+  ThoratDownloader
 }
 import org.slf4j.LoggerFactory
 import upickle.default.*
@@ -50,7 +51,9 @@ object BenchmarkDataset {
       x => new SecuribenchMicroDownloader(x.datasetDir, JavaCpgTypes.SEMGREP)
     ),
     (AvailableBenchmarks.OWASP_SEMGREP, x => new OWASPJavaDownloader(x.datasetDir, JavaCpgTypes.SEMGREP)),
-    (AvailableBenchmarks.ICHNAEA_SEMGREP, x => new IchnaeaDownloader(x.datasetDir))
+    (AvailableBenchmarks.ICHNAEA_SEMGREP, x => new IchnaeaDownloader(x.datasetDir)),
+    (AvailableBenchmarks.THORAT_PYSRC, x => new ThoratDownloader(x.datasetDir)),
+    (AvailableBenchmarks.THORAT_SEMGREP, x => new ThoratDownloader(x.datasetDir))
   )
 
 }

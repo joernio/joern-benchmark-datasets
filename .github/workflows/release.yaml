@@ -46,6 +46,7 @@ jobs:
           mv workspace/securibench-micro-JAVASRC.zip securibench-micro-JAVASRC.zip
           mv workspace/OWASP-BenchmarkJava-JAVA.zip OWASP-BenchmarkJava-JAVA.zip
           mv workspace/OWASP-BenchmarkJava-JAVASRC.zip OWASP-BenchmarkJava-JAVASRC.zip
+          mv workspace/THORAT.zip THORAT.zip
       - name: Set next release version
         id: taggerFinal
         uses: anothrNick/github-tag-action@1.61.0
@@ -62,3 +63,4 @@ jobs:
             securibench-micro-JAVASRC.zip
             OWASP-BenchmarkJava-JAVA.zip
             OWASP-BenchmarkJava-JAVASRC.zip
+            THORAT.zip
