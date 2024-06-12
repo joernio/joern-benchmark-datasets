@@ -55,10 +55,11 @@ class SecuribenchMicroDownloader(datasetDir: File, cpgCreatorType: JavaCpgTypes.
       }
     }
 
-    compressBenchmark(
-      benchmarkBaseDir,
-      Option(File(s"${datasetDir.pathAsString}/securibench-micro-${cpgCreatorType.toString}.zip"))
-    )
+    val datasetLabel =
+      if cpgCreatorType == JavaCpgTypes.JAVA then JavaCpgTypes.JAVA.toString
+      else JavaCpgTypes.JAVASRC.toString
+
+    compressBenchmark(benchmarkBaseDir, Option(File(s"${datasetDir.pathAsString}/securibench-micro-$datasetLabel.zip")))
   }
 
   override def run(): Unit = {
