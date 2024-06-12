@@ -26,9 +26,14 @@ class OWASPJavaDownloader(datasetDir: File, cpgCreatorType: JavaCpgTypes.Value)
 
   override def initialize(): Try[File] = Try {
     downloadBenchmarkAndUnarchive(CompressionTypes.ZIP)
+
+    val datasetLabel =
+      if cpgCreatorType == JavaCpgTypes.JAVA then JavaCpgTypes.JAVA.toString
+      else JavaCpgTypes.JAVASRC.toString
+
     compressBenchmark(
       benchmarkBaseDir,
-      Option(File(s"${datasetDir.pathAsString}/OWASP-BenchmarkJava-$cpgCreatorType.zip"))
+      Option(File(s"${datasetDir.pathAsString}/OWASP-BenchmarkJava-$datasetLabel.zip"))
     )
   }
 

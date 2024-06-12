@@ -35,7 +35,6 @@ class BenchmarkDataset(config: BenchmarkDatasetConfig) {
 }
 
 object BenchmarkDataset {
-
   val benchmarkConstructors: Map[AvailableBenchmarks.Value, BenchmarkDatasetConfig => DatasetDownloader] = Map(
     // TODO: Add when implementing
     (AvailableBenchmarks.OWASP_JAVASRC, x => new OWASPJavaDownloader(x.datasetDir, JavaCpgTypes.JAVASRC)),
@@ -45,7 +44,13 @@ object BenchmarkDataset {
       x => new SecuribenchMicroDownloader(x.datasetDir, JavaCpgTypes.JAVASRC)
     ),
     (AvailableBenchmarks.SECURIBENCH_MICRO_JAVA, x => new SecuribenchMicroDownloader(x.datasetDir, JavaCpgTypes.JAVA)),
-    (AvailableBenchmarks.ICHNAEA_JSSRC, x => new IchnaeaDownloader(x.datasetDir))
+    (AvailableBenchmarks.ICHNAEA_JSSRC, x => new IchnaeaDownloader(x.datasetDir)),
+    (
+      AvailableBenchmarks.SECURIBENCH_MICRO_SEMGREP,
+      x => new SecuribenchMicroDownloader(x.datasetDir, JavaCpgTypes.SEMGREP)
+    ),
+    (AvailableBenchmarks.OWASP_SEMGREP, x => new OWASPJavaDownloader(x.datasetDir, JavaCpgTypes.SEMGREP)),
+    (AvailableBenchmarks.ICHNAEA_SEMGREP, x => new IchnaeaDownloader(x.datasetDir))
   )
 
 }
