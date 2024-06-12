@@ -57,7 +57,7 @@ class SecuribenchMicroDownloader(datasetDir: File, cpgCreatorType: JavaCpgTypes.
 
     compressBenchmark(
       benchmarkBaseDir,
-      Option(File(s"${benchmarkBaseDir.pathAsString}-${cpgCreatorType.toString}.zip"))
+      Option(File(s"${datasetDir.pathAsString}/securibench-micro-${cpgCreatorType.toString}.zip"))
     )
   }
 
