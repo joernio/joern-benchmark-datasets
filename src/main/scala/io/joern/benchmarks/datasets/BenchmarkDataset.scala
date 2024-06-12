@@ -44,12 +44,9 @@ object BenchmarkDataset {
 //    (AvailableBenchmarks.OWASP_JAVA, x => new OWASPJavaDownloader(x.datasetDir)),
     (
       AvailableBenchmarks.SECURIBENCH_MICRO_JAVASRC,
-      x => new SecuribenchMicroDownloader(x.datasetDir, JavaCpgTypes.JAVA_SRC)
+      x => new SecuribenchMicroDownloader(x.datasetDir, JavaCpgTypes.JAVASRC)
     ),
-    (
-      AvailableBenchmarks.SECURIBENCH_MICRO_JAVA,
-      x => new SecuribenchMicroDownloader(x.datasetDir, JavaCpgTypes.JAVA_BYTECODE)
-    ),
+    (AvailableBenchmarks.SECURIBENCH_MICRO_JAVA, x => new SecuribenchMicroDownloader(x.datasetDir, JavaCpgTypes.JAVA)),
     (AvailableBenchmarks.ICHNAEA_JSSRC, x => new IchnaeaDownloader(x.datasetDir))
   )
 

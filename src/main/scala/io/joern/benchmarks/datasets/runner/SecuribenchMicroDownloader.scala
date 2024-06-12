@@ -29,7 +29,7 @@ class SecuribenchMicroDownloader(datasetDir: File, cpgCreatorType: JavaCpgTypes.
     downloadBenchmarkAndUnarchive(CompressionTypes.ZIP)
     downloadFile(apacheJdo, benchmarkBaseDir / "lib" / "jdo-api-3.1.jar")
     if (
-      cpgCreatorType == JavaCpgTypes.JAVA_BYTECODE && (benchmarkBaseDir / "classes")
+      cpgCreatorType == JavaCpgTypes.JAVA && (benchmarkBaseDir / "classes")
         .walk()
         .count(_.`extension`.contains(".class")) < 1
     ) {
