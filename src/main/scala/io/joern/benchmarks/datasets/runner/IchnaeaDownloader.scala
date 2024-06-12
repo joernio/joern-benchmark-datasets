@@ -62,14 +62,14 @@ class IchnaeaDownloader(datasetDir: File) extends DatasetDownloader(datasetDir) 
     }
   }
 
-  override def initialize(): Try[File] = {
+  override def initialize(): Try[File] = Try {
     val downloadedDir = downloadBenchmarkAndUnarchive(CompressionTypes.TGZ) match {
       case Success(dir) =>
         dir
       case Failure(e) => throw e
     }
 
-    zipBenchmarkDirectory(downloadedDir)
+    compressBenchmark(downloadedDir)
   }
 
   override def run(): Unit = {

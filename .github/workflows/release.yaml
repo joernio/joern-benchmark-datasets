@@ -42,6 +42,8 @@ jobs:
       - name: Rename
         run: |
           mv workspace/ichnaea.zip ichnaea.zip
+          mv workspace/securibench-micro-JAVA_BYTECODE.zip securibench-micro-JAVA_BYTECODE.zip
+          mv workspace/securibench-micro-JAVA_SRC.zip securibench-micro-JAVA_SRC.zip
       - name: Set next release version
         id: taggerFinal
         uses: anothrNick/github-tag-action@1.61.0
@@ -54,3 +56,5 @@ jobs:
           tag_name: ${{ steps.taggerDryRun.outputs.new_tag }}
           files: |
             ichnaea.zip
+            securibench-micro-JAVA_BYTECODE.zip
+            securibench-micro-JAVA_SRC.zip

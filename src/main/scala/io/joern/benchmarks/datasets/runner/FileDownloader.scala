@@ -72,6 +72,20 @@ sealed trait FileDownloader { this: DatasetDownloader =>
         }
     }
   }
+
+  protected def compressBenchmark(benchmarkDir: File, destDir: Option[File] = None): File = {
+    val zippedDestDir = destDir match {
+      case Some(dir) =>
+        dir
+      case None =>
+        if benchmarkDir.isDirectory then File(s"${benchmarkDir.pathAsString}.zip")
+        else benchmarkDir.changeExtensionTo(".zip")
+    }
+
+    benchmarkDir.zipTo(zippedDestDir)
+    benchmarkDir.delete(swallowIOExceptions = true)
+    zippedDestDir
+  }
 }
 
 trait SingleFileDownloader extends FileDownloader { this: DatasetDownloader =>
@@ -150,12 +164,6 @@ trait MultiFileDownloader extends FileDownloader { this: DatasetDownloader =>
       }
     }
     targetDir
-  }
-
-  protected def zipBenchmarkDirectory(benchmarkDir: File = benchmarkBaseDir): Try[File] = Try {
-    val zippedDestDir = File(s"${benchmarkDir.pathAsString}.zip")
-    benchmarkDir.zipTo(zippedDestDir)
-    zippedDestDir
   }
 }
 
