@@ -44,8 +44,6 @@ jobs:
           mv workspace/ichnaea.zip ichnaea.zip
           mv workspace/securibench-micro-JAVA.zip securibench-micro-JAVA.zip
           mv workspace/securibench-micro-JAVASRC.zip securibench-micro-JAVASRC.zip
-          mv workspace/OWASP-BenchmarkJava-JAVA.zip OWASP-BenchmarkJava-JAVA.zip
-          mv workspace/OWASP-BenchmarkJava-JAVASRC.zip OWASP-BenchmarkJava-JAVASRC.zip
           mv workspace/THORAT.zip THORAT.zip
       - name: Set next release version
         id: taggerFinal
@@ -61,6 +59,4 @@ jobs:
             ichnaea.zip
             securibench-micro-JAVA.zip
             securibench-micro-JAVASRC.zip
-            OWASP-BenchmarkJava-JAVA.zip
-            OWASP-BenchmarkJava-JAVASRC.zip
             THORAT.zip
