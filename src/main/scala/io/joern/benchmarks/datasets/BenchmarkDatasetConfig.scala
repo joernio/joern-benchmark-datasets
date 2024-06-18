@@ -11,8 +11,6 @@ object AvailableBenchmarks extends Enumeration {
   val ALL = Value
 
   // Joern
-  val OWASP_JAVASRC             = Value
-  val OWASP_JAVA                = Value
   val SECURIBENCH_MICRO_JAVASRC = Value
   val SECURIBENCH_MICRO_JAVA    = Value
   val ICHNAEA_JSSRC             = Value
