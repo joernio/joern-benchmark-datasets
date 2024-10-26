@@ -3,6 +3,7 @@ package io.joern.benchmarks.datasets
 import io.joern.benchmarks.datasets.BenchmarkDataset.benchmarkConstructors
 import io.joern.benchmarks.datasets.AvailableBenchmarks
 import io.joern.benchmarks.datasets.runner.{
+  BugsInPyDownloader,
   DatasetDownloader,
   IchnaeaDownloader,
   SecuribenchMicroDownloader,
@@ -37,18 +38,13 @@ class BenchmarkDataset(config: BenchmarkDatasetConfig) {
 object BenchmarkDataset {
   val benchmarkConstructors: Map[AvailableBenchmarks.Value, BenchmarkDatasetConfig => DatasetDownloader] = Map(
     (
-      AvailableBenchmarks.SECURIBENCH_MICRO_JAVASRC,
+      AvailableBenchmarks.SECURIBENCH_MICRO_SRC,
       x => new SecuribenchMicroDownloader(x.datasetDir, JavaCpgTypes.JAVASRC)
     ),
     (AvailableBenchmarks.SECURIBENCH_MICRO_JAVA, x => new SecuribenchMicroDownloader(x.datasetDir, JavaCpgTypes.JAVA)),
     (AvailableBenchmarks.ICHNAEA_JSSRC, x => new IchnaeaDownloader(x.datasetDir)),
-    (
-      AvailableBenchmarks.SECURIBENCH_MICRO_SEMGREP,
-      x => new SecuribenchMicroDownloader(x.datasetDir, JavaCpgTypes.SEMGREP)
-    ),
-    (AvailableBenchmarks.ICHNAEA_SEMGREP, x => new IchnaeaDownloader(x.datasetDir)),
     (AvailableBenchmarks.THORAT_PYSRC, x => new ThoratDownloader(x.datasetDir)),
-    (AvailableBenchmarks.THORAT_SEMGREP, x => new ThoratDownloader(x.datasetDir))
+    (AvailableBenchmarks.BUGS_IN_PY, x => new BugsInPyDownloader(x.datasetDir))
   )
 
 }
