@@ -3,9 +3,10 @@ package io.joern.benchmarks.datasets.runner
 import better.files.File
 import org.slf4j.LoggerFactory
 
+import java.io.IOException
 import java.net.{URI, URL}
 import java.nio.file.attribute.BasicFileAttributes
-import java.nio.file.{Files, Paths, StandardCopyOption, SimpleFileVisitor, FileVisitResult}
+import java.nio.file.{FileVisitResult, Files, Path, Paths, SimpleFileVisitor, StandardCopyOption}
 import scala.jdk.CollectionConverters.IteratorHasAsScala
 import scala.util.{Failure, Success, Try}
 
@@ -150,13 +151,13 @@ class BugsInPyDownloader(datasetDir: File) extends DatasetDownloader(datasetDir)
 
             Files.walkFileTree(
               dir2,
-              new java.nio.file.SimpleFileVisitor[java.nio.file.Path]() {
-                override def visitFile(file: java.nio.file.Path, attrs: BasicFileAttributes): FileVisitResult = {
+              new SimpleFileVisitor[Path]() {
+                override def visitFile(file: Path, attrs: BasicFileAttributes): FileVisitResult = {
                   Files.delete(file)
                   FileVisitResult.CONTINUE
                 }
 
-                override def postVisitDirectory(dir: java.nio.file.Path, exc: java.io.IOException): FileVisitResult = {
+                override def postVisitDirectory(dir: Path, exc: IOException): FileVisitResult = {
                   Files.delete(dir)
                   FileVisitResult.CONTINUE
                 }
