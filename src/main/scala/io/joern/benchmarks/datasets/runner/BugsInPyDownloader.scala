@@ -4,6 +4,9 @@ import better.files.File
 import org.slf4j.LoggerFactory
 
 import java.net.{URI, URL}
+import java.nio.file.attribute.BasicFileAttributes
+import java.nio.file.{Files, Paths, StandardCopyOption, SimpleFileVisitor, FileVisitResult}
+import scala.jdk.CollectionConverters.IteratorHasAsScala
 import scala.util.{Failure, Success, Try}
 
 class BugsInPyDownloader(datasetDir: File) extends DatasetDownloader(datasetDir) with MultiFileDownloader {
@@ -126,7 +129,45 @@ class BugsInPyDownloader(datasetDir: File) extends DatasetDownloader(datasetDir)
       case Failure(e) => throw e
     }
 
+    moveContentsToParentDir(benchmarkBaseDir)
+
     compressBenchmark(downloadedDir)
+  }
+
+  private def moveContentsToParentDir(baseDir: File): Unit = {
+    val basePath = baseDir.path
+
+    if (Files.exists(basePath) && Files.isDirectory(basePath)) {
+      Files.list(basePath).iterator.asScala.foreach { childDir1 =>
+        if (Files.isDirectory(childDir1)) {
+          val childDir2 = Files.list(childDir1).iterator().asScala.find(Files.isDirectory(_))
+
+          childDir2.foreach { dir2 =>
+            Files.list(dir2).iterator().asScala.foreach { content =>
+              val destination = childDir1.resolve(content.getFileName)
+              Files.move(content, destination, StandardCopyOption.REPLACE_EXISTING)
+            }
+
+            Files.walkFileTree(
+              dir2,
+              new java.nio.file.SimpleFileVisitor[java.nio.file.Path]() {
+                override def visitFile(file: java.nio.file.Path, attrs: BasicFileAttributes): FileVisitResult = {
+                  Files.delete(file)
+                  FileVisitResult.CONTINUE
+                }
+
+                override def postVisitDirectory(dir: java.nio.file.Path, exc: java.io.IOException): FileVisitResult = {
+                  Files.delete(dir)
+                  FileVisitResult.CONTINUE
+                }
+              }
+            )
+          }
+        }
+      }
+    } else {
+      logger.warn(s"Base directory $baseDir does not exist or is not a directory.")
+    }
   }
 
   override def run(): Unit = {
