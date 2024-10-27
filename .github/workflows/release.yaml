@@ -62,3 +62,5 @@ jobs:
             securibench-micro-JAVA.zip
             securibench-micro-JAVASRC.zip
             thorat.zip
+            defects4j.zip
+            bugs_in_py.zip
