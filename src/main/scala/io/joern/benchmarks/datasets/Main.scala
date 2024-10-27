@@ -9,20 +9,15 @@ import scala.util.{Failure, Success}
 /** Example program that makes use of Joern as a library */
 object Main {
 
-  private val logger = LoggerFactory.getLogger(getClass)
-
   def main(args: Array[String]): Unit = {
     optionParser.parse(args, BenchmarkDatasetConfig()).map(BenchmarkDataset(_)).foreach(_.evaluate())
   }
 
   private val optionParser: OptionParser[BenchmarkDatasetConfig] =
-    new OptionParser[BenchmarkDatasetConfig]("joern-benchmark") {
+    new OptionParser[BenchmarkDatasetConfig]("joern-benchmark-datasets") {
 
       implicit val availableBenchmarksRead: scopt.Read[AvailableBenchmarks.Value] =
         scopt.Read.reads(AvailableBenchmarks withName _)
-
-      implicit val outputFormatRead: scopt.Read[OutputFormat.Value] =
-        scopt.Read.reads(OutputFormat withName _)
 
       implicit val betterFilesRead: scopt.Read[File] =
         scopt.Read.reads(File.apply(_))

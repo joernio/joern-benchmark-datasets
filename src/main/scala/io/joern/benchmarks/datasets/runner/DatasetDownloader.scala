@@ -13,13 +13,8 @@ trait DatasetDownloader(protected val datasetDir: File) {
 
   val benchmarkName: String
 
-  /** Create and setup the benchmark if necessary.
-    *
-    * @return
-    *   the directory where the benchmark is set up if successful.
-    */
   protected def initialize(): Try[File]
 
   def run(): Unit
-//
+
 }

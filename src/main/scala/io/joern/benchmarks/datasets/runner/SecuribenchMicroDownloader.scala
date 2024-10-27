@@ -3,7 +3,6 @@ package io.joern.benchmarks.datasets.runner
 import better.files.File
 import io.joern.benchmarks.*
 import io.joern.benchmarks.datasets.JavaCpgTypes
-import io.joern.x2cpg.utils.ExternalCommand
 import org.slf4j.LoggerFactory
 
 import java.net.{URI, URL}
@@ -47,7 +46,7 @@ class SecuribenchMicroDownloader(datasetDir: File, cpgCreatorType: JavaCpgTypes.
           "classes",
           sourceFiles
         ).mkString(" ")
-      ExternalCommand.run(command, benchmarkBaseDir.pathAsString) match {
+      runCmd(command, benchmarkBaseDir.toJava).toTry match {
         case Failure(exception) =>
           logger.error(s"Exception encountered while compiling source code with: '$command'")
           throw exception

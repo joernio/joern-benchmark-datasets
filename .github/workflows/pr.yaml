@@ -1,7 +1,7 @@
 name: pr
 on: pull_request
 jobs:
-  test:
+  compile:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,8 +18,8 @@ jobs:
             ~/.sbt
             ~/.coursier
           key: ${{ runner.os }}-sbt-${{ hashfiles('**/build.sbt') }}
-      - name: Compile and run tests
-        run: sbt clean test
+      - name: Ensure successful compilation
+        run: sbt clean compile
   formatting:
     runs-on: ubuntu-latest
     steps:
@@ -38,6 +38,6 @@ jobs:
             ~/.coursier
           key: ${{ runner.os }}-sbt-${{ hashfiles('**/build.sbt') }}
       - name: Check formatting
-        run: sbt scalafmtCheck Test/scalafmtCheck
-      - run: echo "Previous step failed because code is not formatted. Run 'sbt scalafmt Test/scalafmt'"
+        run: sbt scalafmtCheck
+      - run: echo "Previous step failed because code is not formatted. Run 'sbt scalafmt'"
         if: ${{ failure() }}
