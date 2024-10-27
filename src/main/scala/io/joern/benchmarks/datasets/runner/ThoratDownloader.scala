@@ -22,11 +22,11 @@ class ThoratDownloader(datasetDir: File) extends DatasetDownloader(datasetDir) w
   override protected val benchmarkBaseDir: File    = datasetDir / benchmarkFileName
 
   override def initialize(): Try[File] = Try {
-    val outputFile = File(s"${datasetDir.pathAsString}/THORAT.zip")
+    val outputFile = File(s"${datasetDir.pathAsString}/thorat.zip")
 
     if !outputFile.exists then
       downloadBenchmarkAndUnarchive(CompressionTypes.ZIP)
-      compressBenchmark(benchmarkBaseDir, Option(File(s"${datasetDir.pathAsString}/THORAT.zip")))
+      compressBenchmark(benchmarkBaseDir, Option(File(s"${datasetDir.pathAsString}/thorat.zip")))
     else outputFile
   }
 

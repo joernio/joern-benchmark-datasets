@@ -13,19 +13,13 @@ object AvailableBenchmarks extends Enumeration {
   // Joern
   val SECURIBENCH_MICRO_SRC  = Value
   val SECURIBENCH_MICRO_JAVA = Value
-  val ICHNAEA_JSSRC          = Value
-  val THORAT_PYSRC           = Value
+  val ICHNAEA                = Value
+  val THORAT                 = Value
   val BUGS_IN_PY             = Value
+  val DEFECTS4J              = Value
 }
 
 object JavaCpgTypes extends Enumeration {
   val JAVASRC = Value
   val JAVA    = Value
-  val SEMGREP = Value
-}
-
-object OutputFormat extends Enumeration {
-  val JSON = Value
-  val CSV  = Value
-  val MD   = Value
 }

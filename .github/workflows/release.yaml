@@ -44,7 +44,9 @@ jobs:
           mv workspace/ichnaea.zip ichnaea.zip
           mv workspace/securibench-micro-JAVA.zip securibench-micro-JAVA.zip
           mv workspace/securibench-micro-JAVASRC.zip securibench-micro-JAVASRC.zip
-          mv workspace/THORAT.zip THORAT.zip
+          mv workspace/thorat.zip thorat.zip
+          mv workspace/defects4j.zip defects4j.zip
+          mv workspace/bugs_in_py.zip bugs_in_py.zip
       - name: Set next release version
         id: taggerFinal
         uses: anothrNick/github-tag-action@1.61.0
@@ -59,4 +61,4 @@ jobs:
             ichnaea.zip
             securibench-micro-JAVA.zip
             securibench-micro-JAVASRC.zip
-            THORAT.zip
+            thorat.zip
