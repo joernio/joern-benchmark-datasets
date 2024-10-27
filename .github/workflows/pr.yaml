@@ -19,7 +19,7 @@ jobs:
             ~/.coursier
           key: ${{ runner.os }}-sbt-${{ hashfiles('**/build.sbt') }}
       - name: Ensure successful compilation
-        run: sbt compile
+        run: sbt clean compile
   formatting:
     runs-on: ubuntu-latest
     steps:
