@@ -131,8 +131,52 @@ class BugsInPyDownloader(datasetDir: File) extends DatasetDownloader(datasetDir)
     }
 
     moveContentsToParentDir(benchmarkBaseDir)
+    packageDetails
+      .map { case PackageDetails(name, version, _) =>
+        val pack     = benchmarkBaseDir / name
+        val fileSize = getPyFileSize(pack.toJava) / 1024
+        val nodeSize = {
+          if (name != "ansible") {
+            runCmd(
+              s"JAVA_OPTS=\"-Xmx12G\" joern-parse --language PYTHONSRC --nooverlays ${pack.pathAsString}",
+              benchmarkBaseDir.toJava
+            ).toTry match
+              case Failure(exception) =>
+                println(s"error on ${pack}")
+                exception.printStackTrace()
+                -1
+              case Success(value) =>
+                value.find(_.startsWith("NODES")).map(_.stripPrefix("NODES:")).getOrElse("-1").toInt
+          } else -1
+        }
+
+        (name, version, fileSize, nodeSize)
+      }
+      .sortBy(_._4)
+      .foreach { case (pack, version, fileSize, nodeSize) =>
+        println(s"$pack & $version & $fileSize & $nodeSize \\\\")
+      }
 
     compressBenchmark(downloadedDir)
+  }
+
+  /** Recursively calculates the total size of `.py` files in a directory
+    */
+  def getPyFileSize(directory: java.io.File): Long = {
+    val files = directory.listFiles
+
+    // Aggregate size of `.py` files, including those in sub-directories
+    val totalSize = files.map { file =>
+      if (file.isFile && file.getName.endsWith(".py")) {
+        file.length()
+      } else if (file.isDirectory && !file.getName.startsWith("test")) {
+        getPyFileSize(file) // Recurse into sub-directories
+      } else {
+        0L
+      }
+    }.sum
+
+    totalSize
   }
 
   private def moveContentsToParentDir(baseDir: File): Unit = {
