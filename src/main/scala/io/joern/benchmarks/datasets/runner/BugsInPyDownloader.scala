@@ -134,11 +134,11 @@ class BugsInPyDownloader(datasetDir: File) extends DatasetDownloader(datasetDir)
     packageDetails
       .map { case PackageDetails(name, version, _) =>
         val pack     = benchmarkBaseDir / name
-        val fileSize = getPyFileSize(pack.toJava) / 1024
+        val fileSize = getPyFileSize(pack.toJava) / 1024d
         val nodeSize = {
           if (name != "ansible") {
             runCmd(
-              s"JAVA_OPTS=\"-Xmx12G\" joern-parse --language PYTHONSRC --nooverlays ${pack.pathAsString}",
+              s"joern-parse --language PYTHONSRC --nooverlays ${pack.pathAsString}",
               benchmarkBaseDir.toJava
             ).toTry match
               case Failure(exception) =>
@@ -154,7 +154,7 @@ class BugsInPyDownloader(datasetDir: File) extends DatasetDownloader(datasetDir)
       }
       .sortBy(_._4)
       .foreach { case (pack, version, fileSize, nodeSize) =>
-        println(s"$pack & $version & $fileSize & $nodeSize \\\\")
+        println(f"$pack & $version & $fileSize%.2f & $nodeSize \\\\")
       }
 
     compressBenchmark(downloadedDir)
