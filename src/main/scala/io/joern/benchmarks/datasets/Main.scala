@@ -6,7 +6,6 @@ import scopt.OptionParser
 
 import scala.util.{Failure, Success}
 
-/** Example program that makes use of Joern as a library */
 object Main {
 
   def main(args: Array[String]): Unit = {
