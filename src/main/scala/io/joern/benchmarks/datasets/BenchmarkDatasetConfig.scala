@@ -10,9 +10,9 @@ case class BenchmarkDatasetConfig(
 object AvailableBenchmarks extends Enumeration {
   val ALL = Value
 
-  // Joern
   val SECURIBENCH_MICRO_SRC  = Value
   val SECURIBENCH_MICRO_JAVA = Value
+  val SECURIBENCH_MICRO_JS   = Value
   val ICHNAEA                = Value
   val THORAT                 = Value
   val BUGS_IN_PY             = Value

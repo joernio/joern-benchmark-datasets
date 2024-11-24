@@ -8,6 +8,7 @@ import io.joern.benchmarks.datasets.runner.{
   Defects4jDownloader,
   IchnaeaDownloader,
   SecuribenchMicroDownloader,
+  SecuribenchMicroJsDownloader,
   ThoratDownloader
 }
 import org.slf4j.LoggerFactory
@@ -38,6 +39,7 @@ object BenchmarkDataset {
       x => new SecuribenchMicroDownloader(x.datasetDir, JavaCpgTypes.JAVASRC)
     ),
     (AvailableBenchmarks.SECURIBENCH_MICRO_JAVA, x => new SecuribenchMicroDownloader(x.datasetDir, JavaCpgTypes.JAVA)),
+    (AvailableBenchmarks.SECURIBENCH_MICRO_JS, x => new SecuribenchMicroJsDownloader(x.datasetDir)),
     (AvailableBenchmarks.ICHNAEA, x => new IchnaeaDownloader(x.datasetDir)),
     (AvailableBenchmarks.THORAT, x => new ThoratDownloader(x.datasetDir)),
     (AvailableBenchmarks.BUGS_IN_PY, x => new BugsInPyDownloader(x.datasetDir)),

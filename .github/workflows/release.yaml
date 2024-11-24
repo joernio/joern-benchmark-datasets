@@ -47,6 +47,7 @@ jobs:
           mv workspace/thorat.zip thorat.zip
           mv workspace/defects4j.zip defects4j.zip
           mv workspace/bugs_in_py.zip bugs_in_py.zip
+          mv workspace/securibench-micro-js.zip securibench-micro-js.zip
       - name: Set next release version
         id: taggerFinal
         uses: anothrNick/github-tag-action@1.61.0
@@ -64,3 +65,4 @@ jobs:
             thorat.zip
             defects4j.zip
             bugs_in_py.zip
+            securibench-micro-js.zip
