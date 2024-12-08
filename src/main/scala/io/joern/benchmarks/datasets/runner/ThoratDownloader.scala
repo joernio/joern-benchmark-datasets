@@ -16,9 +16,9 @@ class ThoratDownloader(datasetDir: File) extends DatasetDownloader(datasetDir) w
   override val benchmarkName = s"Thorat Python v$version"
 
   override protected val benchmarkUrl: URL = URI(
-    s"https://github.com/DavidBakerEffendi/benchmark-for-taint-analysis-tools-for-python/archive/refs/tags/v$version.zip"
+    s"https://github.com/DavidBakerEffendi/thorat/archive/refs/tags/v$version.zip"
   ).toURL
-  override protected val benchmarkFileName: String = s"benchmark-for-taint-analysis-tools-for-python-$version"
+  override protected val benchmarkFileName: String = s"thorat-$version"
   override protected val benchmarkBaseDir: File    = datasetDir / benchmarkFileName
 
   override def initialize(): Try[File] = Try {
