@@ -12,7 +12,7 @@ class ThoratDownloader(datasetDir: File) extends DatasetDownloader(datasetDir) w
 
   private val logger = LoggerFactory.getLogger(getClass)
 
-  private val version        = "1.0.0"
+  private val version        = "1.0.1"
   override val benchmarkName = s"Thorat Python v$version"
 
   override protected val benchmarkUrl: URL = URI(
