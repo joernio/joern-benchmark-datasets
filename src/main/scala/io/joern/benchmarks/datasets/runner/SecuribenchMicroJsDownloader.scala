@@ -12,7 +12,7 @@ class SecuribenchMicroJsDownloader(datasetDir: File) extends DatasetDownloader(d
 
   private val logger = LoggerFactory.getLogger(getClass)
 
-  private val version        = "1.0.3"
+  private val version        = "1.0.4"
   override val benchmarkName = s"securibench-micro.js v$version"
 
   override protected val benchmarkUrl: URL = URI(
